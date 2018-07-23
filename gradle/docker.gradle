@@ -11,6 +11,23 @@ buildscript {
 apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin
 
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+
+docker {
+    if (System.env.DOCKER_HOST) {
+        url = System.env.DOCKER_HOST
+    }
+    if (System.env.DOCKER_CERT_PATH) {
+        certPath = new File(System.env.DOCKER_CERT_PATH)
+    }
+    registryCredentials {
+        //url default value
+        //url = 'https://index.docker.io/v1/'
+        username = 'springframeworkguru'
+        password = (System.env.DOCKER_HUB_PWD)
+        email = 'john@springframework.guru'
+    }
+}
 
 task copyDockerFiles(type: Copy) {
     description = "Copy Dockerfile and required data to build directory"
