@@ -18,12 +18,12 @@ entity RfbUser {
 
 relationship OneToMany {
 	RfbLocation{rfbEvent} to RfbEvent,
-    RfbEvent{rfbEventAttendance} to RfbEventAttendance
+    RfbEvent{rfbEventAttendance} to RfbEventAttendance,
+    RfbUser{rfbEventAttendance} to RfbEventAttendance
 }
 
 relationship OneToOne {
-	RfbEventAttendance{rfbUser} to RfbUser,
-	RfbUser{rfbLocation} to RfbLocation
+	RfbUser{homeLocation} to RfbLocation
 }
 
 dto * with mapstruct

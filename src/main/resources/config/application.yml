@@ -50,19 +50,21 @@ spring:
         mode: XHTML
     social:
         # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
-        google:
-            client-id: xxx
-            client-secret: xxx
+#        google:
+#            client-id: xxx
+#            client-secret: xxx
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            client-id: xxx
-            client-secret: xxx
+            app-id: 286796371967326
+            app-secret: b7d868d3c4aca131c855bf5c9eff699f
+        #            client-id: xxx
+#            client-secret: xxx
 
         # see https://apps.twitter.com/app/
         twitter:
-            client-id: xxx
-            client-secret: xxx
+            app-id: Q3aU1UW4ggG67unV7TrzjJjpv
+            app-secret: gHuokhHvopnC1MF9DsXOxX7XfMKecwqcZCzRt2rvfEa8sVjnnY
 
         # jhipster-needle-add-social-configuration
 security:

@@ -72,14 +72,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
-        return new AjaxAuthenticationFailureHandler();
+    public RfbAjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
+        return new RfbAjaxAuthenticationFailureHandler();
     }
 
     @Bean
     public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
         return new AjaxLogoutSuccessHandler();
     }
+
+//    @Bean
+//    public Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint() {
+//        return new Http401UnauthorizedEntryPoint();
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
