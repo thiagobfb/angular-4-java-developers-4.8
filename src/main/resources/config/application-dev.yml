@@ -50,7 +50,7 @@ spring:
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.BeanClassLoaderAwareJCacheRegionFactory
     mail:
         host: localhost
-        port: 25
+        port: 1025
         username:
         password:
     messages:

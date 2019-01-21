@@ -32,7 +32,7 @@ export const rfbEventRoute: Routes = [
             'pagingParams': RfbEventResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_ORGANIZER'],
             pageTitle: 'RfbEvents'
         },
         canActivate: [UserRouteAccessService]
@@ -40,7 +40,7 @@ export const rfbEventRoute: Routes = [
         path: 'rfb-event/:id',
         component: RfbEventDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_ORGANIZER'],
             pageTitle: 'RfbEvents'
         },
         canActivate: [UserRouteAccessService]
@@ -52,7 +52,7 @@ export const rfbEventPopupRoute: Routes = [
         path: 'rfb-event-new',
         component: RfbEventPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_ORGANIZER'],
             pageTitle: 'RfbEvents'
         },
         canActivate: [UserRouteAccessService],
@@ -62,7 +62,7 @@ export const rfbEventPopupRoute: Routes = [
         path: 'rfb-event/:id/edit',
         component: RfbEventPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_ORGANIZER'],
             pageTitle: 'RfbEvents'
         },
         canActivate: [UserRouteAccessService],
@@ -72,7 +72,7 @@ export const rfbEventPopupRoute: Routes = [
         path: 'rfb-event/:id/delete',
         component: RfbEventDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_ORGANIZER'],
             pageTitle: 'RfbEvents'
         },
         canActivate: [UserRouteAccessService],

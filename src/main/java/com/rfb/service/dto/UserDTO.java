@@ -53,26 +53,41 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private Long homeLocation;
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
 
     public UserDTO(User user) {
-        this.id = user.getId();
-        this.login = user.getLogin();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.activated = user.getActivated();
-        this.imageUrl = user.getImageUrl();
-        this.langKey = user.getLangKey();
-        this.createdBy = user.getCreatedBy();
-        this.createdDate = user.getCreatedDate();
-        this.lastModifiedBy = user.getLastModifiedBy();
-        this.lastModifiedDate = user.getLastModifiedDate();
-        this.authorities = user.getAuthorities().stream()
-            .map(Authority::getName)
-            .collect(Collectors.toSet());
+        this(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(),
+            user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
+            user.getCreatedBy(), user.getCreatedDate(), user.getLastModifiedBy(), user.getLastModifiedDate(),
+            (user.getHomeLocation() != null) ? user.getHomeLocation().getId() : null,
+            user.getAuthorities().stream().map(Authority::getName)
+                .collect(Collectors.toSet()));
+    }
+
+    public UserDTO(Long id, String login, String firstName, String lastName,
+                   String email, boolean activated, String imageUrl, String langKey,
+                   String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate,
+                   Long homeLocation,
+                   Set<String> authorities) {
+
+        this.id = id;
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.activated = activated;
+        this.imageUrl = imageUrl;
+        this.langKey = langKey;
+        this.createdBy = createdBy;
+        this.createdDate = createdDate;
+        this.lastModifiedBy = lastModifiedBy;
+        this.lastModifiedDate = lastModifiedDate;
+        this.homeLocation = homeLocation;
+        this.authorities = authorities;
     }
 
     public Long getId() {
@@ -179,6 +194,14 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    public Long getHomeLocation() {
+        return homeLocation;
+    }
+
+    public void setHomeLocation(Long homeLocation) {
+        this.homeLocation = homeLocation;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -196,4 +219,5 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
 }

@@ -1,6 +1,7 @@
 package com.rfb.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 abstract class AbstractRepositoryTest {
 
@@ -14,5 +15,11 @@ abstract class AbstractRepositoryTest {
     RfbEventAttendanceRepository rfbEventAttendanceRepository;
 
     @Autowired
-    RfbUserRepository rfbUserRepository;
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    AuthorityRepository authorityRepository;
 }

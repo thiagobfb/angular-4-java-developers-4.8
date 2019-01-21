@@ -24,17 +24,17 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" for="field_rfbEvent">Rfb Event</label>
+            <label class="form-control-label" for="field_rfbEvent">Event</label>
             <select class="form-control" id="field_rfbEvent" name="rfbEvent" [(ngModel)]="rfbEventAttendance.rfbEventId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="rfbEventOption.id" *ngFor="let rfbEventOption of rfbevents; trackBy: trackRfbEventById">{{rfbEventOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_rfbUser">Rfb User</label>
-            <select class="form-control" id="field_rfbUser" name="rfbUser" [(ngModel)]="rfbEventAttendance.rfbUserId" >
+            <label class="form-control-label" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="rfbEventAttendance.userDTO.id" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="rfbUserOption.id" *ngFor="let rfbUserOption of rfbusers; trackBy: trackRfbUserById">{{rfbUserOption.id}}</option>
+                <option [ngValue]="user.id" *ngFor="let user of users; trackBy: trackRfbUserById">{{user.login}}</option>
             </select>
         </div>
     </div>

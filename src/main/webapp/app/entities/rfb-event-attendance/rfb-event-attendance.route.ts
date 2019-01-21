@@ -11,7 +11,7 @@ export const rfbEventAttendanceRoute: Routes = [
         path: 'rfb-event-attendance',
         component: RfbEventAttendanceComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'RfbEventAttendances'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const rfbEventAttendanceRoute: Routes = [
         path: 'rfb-event-attendance/:id',
         component: RfbEventAttendanceDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'RfbEventAttendances'
         },
         canActivate: [UserRouteAccessService]
@@ -31,7 +31,7 @@ export const rfbEventAttendancePopupRoute: Routes = [
         path: 'rfb-event-attendance-new',
         component: RfbEventAttendancePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'RfbEventAttendances'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const rfbEventAttendancePopupRoute: Routes = [
         path: 'rfb-event-attendance/:id/edit',
         component: RfbEventAttendancePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'RfbEventAttendances'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const rfbEventAttendancePopupRoute: Routes = [
         path: 'rfb-event-attendance/:id/delete',
         component: RfbEventAttendanceDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'RfbEventAttendances'
         },
         canActivate: [UserRouteAccessService],

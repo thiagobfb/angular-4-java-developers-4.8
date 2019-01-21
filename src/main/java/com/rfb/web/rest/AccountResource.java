@@ -110,7 +110,7 @@ public class AccountResource {
     @Timed
     public UserDTO getAccount() {
         return userService.getUserWithAuthorities()
-            .map(UserDTO::new)
+            .map(user -> new UserDTO(user))
             .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
     }
 

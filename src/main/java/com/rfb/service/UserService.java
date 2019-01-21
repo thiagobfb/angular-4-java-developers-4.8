@@ -1,6 +1,5 @@
 package com.rfb.service;
 
-import com.rfb.config.CacheConfiguration;
 import com.rfb.domain.Authority;
 import com.rfb.domain.User;
 import com.rfb.repository.AuthorityRepository;
@@ -102,7 +101,7 @@ public class UserService {
     public User registerUser(UserDTO userDTO, String password) {
 
         User newUser = new User();
-        Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
+        Authority authority = authorityRepository.findOne(AuthoritiesConstants.RUNNER);
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(userDTO.getLogin());
@@ -207,7 +206,7 @@ public class UserService {
                 log.debug("Changed Information for User: {}", user);
                 return user;
             })
-            .map(UserDTO::new);
+            .map(user1 -> new UserDTO(user1));
     }
 
     public void deleteUser(String login) {
@@ -234,7 +233,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(user -> new UserDTO(user));
     }
 
     @Transactional(readOnly = true)
