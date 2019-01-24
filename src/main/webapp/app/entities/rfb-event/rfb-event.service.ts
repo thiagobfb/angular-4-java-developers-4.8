@@ -44,6 +44,11 @@ export class RfbEventService {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
     }
 
+    findByLocation(locationID: number): Observable<EntityResponseType> {
+        return this.http.get<RfbEvent>(`${this.resourceUrl}/locations/${locationID}`, { observe: 'response'})
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: RfbEvent = this.convertItemFromServer(res.body);
         return res.clone({body});

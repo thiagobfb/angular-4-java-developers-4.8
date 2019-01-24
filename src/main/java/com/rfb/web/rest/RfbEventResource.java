@@ -123,4 +123,19 @@ public class RfbEventResource {
         rfbEventService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * GET  /rfb-events/location/id : get a single event for the location and today.
+     *
+     * @param locationID the location of the event
+     * @return the ResponseEntity with status 200 (OK) and the list of rfbEvents in body
+     */
+    @GetMapping("/rfb-events/location/{locationID}")
+    @Timed
+    public ResponseEntity<RfbEventDTO> getTodayEventByLocation(@PathVariable Long locationID) {
+        log.debug("REST request to get a page of RfbEvents");
+        RfbEventDTO event = rfbEventService.findByTodayAndLocation(locationID);
+
+        return new ResponseEntity<>(event, null, HttpStatus.OK);
+    }
 }
