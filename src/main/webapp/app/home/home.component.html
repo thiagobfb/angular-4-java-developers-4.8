@@ -37,10 +37,11 @@
                                 <option [ngValue]="null"></option>
                                 <option [ngValue]="location.id" *ngFor="let location of locations">{{location.locationName}}</option>
                             </select>
+                            <small *ngIf="!model.location"><a href="/#/settings">SET HOME LOCATION</a></small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label" for="field_eventCode">Event Code</label>
-                            <input type="text" class="form-control" name="eventCode" id="field_eventCode" [(ngModel)]="model.eventCode" #eventCode="NgModel" required />
+                            <input type="text" class="form-control" name="eventCode" id="field_eventCode" [(ngModel)]="model.eventCode" #eventCode="ngModel" required />
                         </div>
                     </div>
                     <div class="modal-footer">

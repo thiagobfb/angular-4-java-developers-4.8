@@ -43,7 +43,7 @@ public class RfbBootstrap implements CommandLineRunner {
     private void initData() {
         User rfbUser = new User();
         rfbUser.setFirstName("Johnny");
-        rfbUser.setPassword(passwordEncoder.encode("admin"));
+        rfbUser.setPassword(passwordEncoder.encode("johnny"));
         rfbUser.setLogin("johnny");
         rfbUser.setEmail("johnny@runningforbrews.com");
         rfbUser.setActivated(true);

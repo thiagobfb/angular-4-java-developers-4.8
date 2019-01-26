@@ -6,7 +6,7 @@ import {Account, AccountService, LoginModalService, Principal, User} from '../sh
 import {RfbLocation, RfbLocationService} from '../entities/rfb-location';
 import {EntityResponseType, RfbEvent, RfbEventService} from '../entities/rfb-event';
 import {RfbEventAttendance, RfbEventAttendanceService} from '../entities/rfb-event-attendance';
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({
     selector: 'jhi-home',
@@ -40,29 +40,35 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.principal.identity().then((account) => {
-            this.account = account;
-        });
-        this.registerAuthenticationSuccess();
-        this.loadLocations();
         this.model = {location: 0, eventCode: ''};
         this.rfbEventAttendance = new RfbEventAttendance(null, new Date(), new RfbEvent(), new User());
-
-        this.accountService.get().subscribe((user: HttpResponse<User>) => {
-            this.currentUser = user.body;
-            this.rfbEventAttendance.userDTO = user.body;
-
-            if (this.currentUser.authorities.indexOf('ROLE_ORGANIZER') !== -1) {
-                this.setTodayEvent(this.currentUser.homeLocation);
-            }
-
-            if (this.currentUser.authorities.indexOf('ROLE_RUNNER') !== -1) {
-                this.model.location = this.currentUser.homeLocation;
-            }
-        });
+        // for whatever reason this.principal.isAuthenticated() never returns true. This is my way of making
+        // sure this isn't run when nobody is logged in.
+        if (this.principal.hasAnyAuthorityDirect(['ROLE_RUNNER', 'ROLE_ORGANIZER', 'ROLE_ADMIN'])) {
+            this.principal.identity().then((account) => {
+                this.account = account;
+                this.afterUserAccountSetup(account);
+            });
+        }
+        this.registerAuthenticationSuccess();
+        this.loadLocations();
     }
 
-    setTodayEvent(locationID: number) {
+    afterUserAccountSetup(user: Account) {
+        this.currentUser = user;
+        this.rfbEventAttendance.userDTO = user;
+        // we can set todays event for anyone who has a homeLocation. If they don't we should setTodays event
+        // when they change the location drop down || or just grab the event and then compare their event code to the events
+        if (this.currentUser.authorities.indexOf('ROLE_ORGANIZER') !== -1) {
+            this.setTodaysEvent(this.currentUser.homeLocation);
+        }
+        if (this.currentUser.authorities.indexOf('ROLE_RUNNER') !== -1) {
+            // set home location
+            this.model.location = this.currentUser.homeLocation;
+        }
+    }
+
+    setTodaysEvent(locationID: number) {
         this.eventService.findByLocation(locationID).subscribe((rfbEvent: EntityResponseType) => {
             this.todaysEvent = rfbEvent.body;
         });
@@ -103,7 +109,7 @@ export class HomeComponent implements OnInit {
                    this.checkedIn = true;
                 });
             } else {
-                this.errors.invalidEventCode = "There is either no run today for this location or you have entered an incorrect event code. Please try again.";
+                this.errors.invalidEventCode = 'There is either no run today for this location or you have entered an incorrect event code. Please try again.';
             }
         });
     }
