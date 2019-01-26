@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/thiagobfb/angular-4-java-developers-4.8.svg?style=svg)](https://circleci.com/gh/thiagobfb/angular-4-java-developers-4.8)
 # rfbloyalty
 This application was generated using JHipster 4.14.5, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.5](http://www.jhipster.tech/documentation-archive/v4.14.5).
 
