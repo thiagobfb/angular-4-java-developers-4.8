@@ -28,8 +28,19 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_10.x | bash && \
     apt-get install -y nodejs && \
     npm install -g npm@latest && \
+    npm install -g @angular/cli && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && \
     apt-get install -y yarn && \
     npm install -g generator-jhipster
+
+#RUN curl -s "https://get.sdkman.io" | bash
+#RUN exit
+#RUN source "/root/.sdkman/bin/sdkman-init.sh"
+#RUN /bin/sh -l -c 'sdk install gradle 5.1.1'
+FROM gradle:jdk10 as builder
+
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build
