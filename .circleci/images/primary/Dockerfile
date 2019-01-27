@@ -1,3 +1,9 @@
+FROM golang:1.8.0
+
+RUN apt-get update && apt-get install -y netcat
+RUN go get github.com/jstemmer/go-junit-report
+
+
 FROM circleci/openjdk:8-jdk
 
 USER root
@@ -11,6 +17,10 @@ RUN apt-get update && \
     less \
     man \
     ssh \
+    git \
+    gzip \
+    tar \
+    ca-certificates \
     python \
     python-pip \
     python-virtualenv \
