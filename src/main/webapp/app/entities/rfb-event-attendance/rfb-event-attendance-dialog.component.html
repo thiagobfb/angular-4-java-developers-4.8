@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label class="form-control-label" for="field_rfbEvent">Event</label>
-            <select class="form-control" id="field_rfbEvent" name="rfbEvent" [(ngModel)]="rfbEventAttendance.rfbEventId" >
+            <select class="form-control" id="field_rfbEvent" name="rfbEvent" [(ngModel)]="rfbEventAttendance.rfbEventDTO.id" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="rfbEventOption.id" *ngFor="let rfbEventOption of rfbevents; trackBy: trackRfbEventById">{{rfbEventOption.id}}</option>
             </select>
