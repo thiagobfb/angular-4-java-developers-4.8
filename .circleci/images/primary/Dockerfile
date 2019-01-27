@@ -39,8 +39,14 @@ RUN apt-get update && \
 #RUN exit
 #RUN source "/root/.sdkman/bin/sdkman-init.sh"
 #RUN /bin/sh -l -c 'sdk install gradle 5.1.1'
-FROM gradle:jdk10 as builder
+#FROM gradle:jdk8
 
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build
+#COPY --chown=gradle:gradle . /home/gradle/src
+#WORKDIR /home/gradle/src
+#RUN gradle build
+RUN wget https://services.gradle.org/distributions/gradle-5.1.1-bin.zip
+#RUN mkdir /opt/gradle
+RUN unzip -d /opt/gradle gradle-5.1.1-bin.zip
+RUN ls /opt/gradle/gradle-5.1.1
+RUN java -version
+RUN gradle -v
