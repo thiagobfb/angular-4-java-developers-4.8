@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y netcat
 RUN go get github.com/jstemmer/go-junit-report
 
 
-FROM circleci/openjdk:8-jdk
+FROM springframeworkguru/circleci_build:latest
 
 USER root
 
@@ -44,10 +44,10 @@ RUN apt-get update && \
 #COPY --chown=gradle:gradle . /home/gradle/src
 #WORKDIR /home/gradle/src
 #RUN gradle build
-RUN wget https://services.gradle.org/distributions/gradle-5.1.1-bin.zip
+#RUN wget https://services.gradle.org/distributions/gradle-5.1.1-bin.zip
 #RUN mkdir /opt/gradle
-RUN unzip -d /opt/gradle gradle-5.1.1-bin.zip
-RUN ls /opt/gradle/gradle-5.1.1
-RUN rm -R ~/.gradle
-RUN java -version
-RUN gradle -v
+#RUN unzip -d /opt/gradle gradle-5.1.1-bin.zip
+#RUN ls /opt/gradle/gradle-5.1.1
+#RUN rm -R ~/.gradle
+#RUN java -version
+#RUN gradle -v
