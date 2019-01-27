@@ -48,5 +48,6 @@ RUN wget https://services.gradle.org/distributions/gradle-5.1.1-bin.zip
 #RUN mkdir /opt/gradle
 RUN unzip -d /opt/gradle gradle-5.1.1-bin.zip
 RUN ls /opt/gradle/gradle-5.1.1
+RUN rm -R ~/.gradle
 RUN java -version
 RUN gradle -v
